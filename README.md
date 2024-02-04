@@ -9,8 +9,8 @@ Documentación de dominios y sub-dominios
 
 Documentación del lenguaje ubicuo
 
-* Event storming - AS-IS: src/main/cml/alpes_AS_IS.cml
-* Event storming - TO-BE: src/main/cml/alpes_TO_BE.cml
+* Event storming - AS-IS: src/main/resources/event_storming/Event Storming - Propiedades de los Alpes AS IS.jpg
+* Event storming - TO-BE: src/main/resources/event_storming/Event Storming - Propiedades de los Alpes TO BE.jpg
 
 Documentación de contextos acotados
 

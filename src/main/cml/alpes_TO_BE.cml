@@ -1,0 +1,126 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = TO_BE
+	
+	/* Add bounded contexts to this context map: */
+	contains InformacionCompaniasContexto
+	contains InformacionContractualContexto
+	contains InformacionGISContexto
+	contains InformacionCatastralContexto
+    contains IngestaDatosRegionContexto
+	contains ProcesamientoDatosContexto
+	contains AuditoriaDatosContexto
+    contains SistemasB2BContexto
+	
+	/* Define the context relationships: */ 
+
+    IngestaDatosRegionContexto  [D,C]<-[U,S]  InformacionCompaniasContexto
+
+    IngestaDatosRegionContexto  [D,C]<-[U,S]  InformacionContractualContexto
+
+    IngestaDatosRegionContexto  [D,C]<-[U,S]  InformacionGISContexto
+
+    IngestaDatosRegionContexto  [D,C]<-[U,S]  InformacionCatastralContexto
+
+    ProcesamientoDatosContexto  [P]<->[P]  IngestaDatosRegionContexto
+
+    AuditoriaDatosContexto [D,CF]<-[U] ProcesamientoDatosContexto
+
+    SistemasB2BContexto [D,C]<-[U,S] AuditoriaDatosContexto
+	
+}
+
+/* Bounded Context Definitions */
+BoundedContext InformacionCompaniasContexto implements IntegracionFuentesExternasInformacionDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información de compañías de la región o país"
+}
+BoundedContext InformacionContractualContexto implements IntegracionFuentesExternasInformacionDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información contractual y de transacciones obtenida de proveedores de listados de propiedades"
+}
+BoundedContext InformacionGISContexto implements IntegracionFuentesExternasInformacionDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información GIS de diversas fuentes"
+}
+BoundedContext InformacionCatastralContexto implements IntegracionFuentesExternasInformacionDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información catastral y de planos de fuentes regionales"
+}
+BoundedContext IngestaDatosRegionContexto implements IngestaDatosDominio{
+    type = SYSTEM
+    domainVisionStatement = "Este contexto representa un sistema que se encarga de almacenar la información de múltiples fuentes de acuerdo a la región o país"
+}
+BoundedContext ProcesamientoDatosContexto implements AnalisisAutomatizadoDatosDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que procesa la información de acuerdo a las reglas de cada región, para consolidar las propiedades de los bienes raices"
+}
+BoundedContext AuditoriaDatosContexto implements AnalisisAutomatizadoDatosDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa una aplicación que revisa la confiabilidad de la información automatizada"
+}
+BoundedContext RecoleccionManualDatosContexto implements RecoleccionHumanoDatosDominio{
+    type = TEAM
+    domainVisionStatement = "Este contexto representa un conjunto de investigadores que recolectan información de tipo manual"
+}
+BoundedContext RecoleccionCampoDatosContexto implements RecoleccionHumanoDatosDominio{
+    type = TEAM
+    domainVisionStatement = "Este contexto representa un conjunto de investigadores en campo que recopilan datos faltantes de las propiedades"
+}
+BoundedContext EnriquecimientoDatosContexto implements AnalisisHumanoDatosDominio{
+    type = TEAM
+    domainVisionStatement = "Este contexto representa a un equipo de auditoría que clasifica y enriquece la información"
+}
+BoundedContext SistemasB2BContexto implements EntregaInformacionB2BDominio{
+    type = APPLICATION
+    domainVisionStatement = "Este contexto representa a un conjunto de sistemas que entregan la información al usuario"
+}
+BoundedContext InfraestructuraTecnologicaContexto implements InfraestructuraTecnologicaDominio{
+    type = SYSTEM
+    domainVisionStatement = "Este contexto representa al conjunto de recursos tecnológicos que componen la arquitectura escalable, distribuidos geográficamente"
+}
+BoundedContext RecursosHumanosContexto implements RecursosHumanosDominio{
+    type = TEAM
+    domainVisionStatement = "Este contexto representa al conjunto de recursos humanos de la empresa"
+}
+
+
+/* Domain & Subdomain Definitions */
+Domain InformacionBienesRaicesDominio{
+    Subdomain IntegracionFuentesExternasInformacionDominio {
+        type = CORE_DOMAIN
+        domainVisionStatement = "Subdominio que gestiona la adquisición de datos de fuentes externas"
+    }
+    Subdomain IngestaDatosDominio {
+        type = CORE_DOMAIN
+        domainVisionStatement = "Subdominio que almacena la información obtenida de múltiples fuentes"
+    }
+    Subdomain AnalisisAutomatizadoDatosDominio {
+        type = CORE_DOMAIN
+        domainVisionStatement = "Subdominio que procesa, valida y enriquece los datos adquiridos automáticamente"
+    }
+    Subdomain RecoleccionHumanoDatosDominio {
+        type = CORE_DOMAIN
+        domainVisionStatement = "Subdominio que recolecta datos por medio de recursos humanos"
+    }
+    Subdomain AnalisisHumanoDatosDominio {
+        type = CORE_DOMAIN
+        domainVisionStatement = "Subdominio que clasifica y enriquece informacion por medio de recursos humanos"
+    }
+    Subdomain EntregaInformacionB2BDominio {
+        type = GENERIC_SUBDOMAIN
+        domainVisionStatement = "Subdominio que gestiona la información a entregar al usuario"
+    }
+    Subdomain InfraestructuraTecnologicaDominio {
+        type = SUPPORTING_DOMAIN
+        domainVisionStatement = "Subdominio que administra los recursos tecnológicos de la empresa"
+    }
+    Subdomain RecursosHumanosDominio {
+        type = SUPPORTING_DOMAIN
+        domainVisionStatement = "Subdominio que administra los recursos humanos disponibles"
+    }
+    
+    
+
+}

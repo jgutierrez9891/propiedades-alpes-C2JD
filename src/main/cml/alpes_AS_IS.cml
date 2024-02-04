@@ -1,3 +1,33 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap InsuranceContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = AS_IS
+	
+	/* Add bounded contexts to this context map: */
+	contains InformacionCompaniasContexto
+	contains InformacionContractualContexto
+	contains InformacionGISContexto
+	contains InformacionCatastralContexto
+	contains ProcesamientoDatosContexto
+	contains AuditoriaDatosContexto
+    contains SistemasB2BContexto
+	
+	/* Define the context relationships: */ 
+
+    ProcesamientoDatosContexto  [D,C]<-[U,S]  InformacionCompaniasContexto
+
+    ProcesamientoDatosContexto  [D,C]<-[U,S]  InformacionContractualContexto
+
+    ProcesamientoDatosContexto  [D,C]<-[U,S]  InformacionGISContexto
+
+    ProcesamientoDatosContexto  [D,C]<-[U,S]  InformacionCatastralContexto
+
+    AuditoriaDatosContexto [D,CF]<-[U] ProcesamientoDatosContexto
+
+    SistemasB2BContexto [D,C]<-[U,S] AuditoriaDatosContexto
+	
+}
+
 /* Bounded Context Definitions */
 BoundedContext InformacionCompaniasContexto implements IntegracionFuentesExternasInformacionDominio{
     type = APPLICATION
@@ -13,7 +43,7 @@ BoundedContext InformacionGISContexto implements IntegracionFuentesExternasInfor
 }
 BoundedContext InformacionCatastralContexto implements IntegracionFuentesExternasInformacionDominio{
     type = APPLICATION
-    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información catastral y de planos"
+    domainVisionStatement = "Este contexto representa una aplicación que captura y extrae información catastral y de planos de fuentes públicas como IGAC"
 }
 BoundedContext ProcesamientoDatosContexto implements AnalisisAutomatizadoDatosDominio{
     type = APPLICATION

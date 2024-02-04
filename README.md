@@ -1,28 +1,22 @@
-![Context Mapper](https://raw.githubusercontent.com/wiki/ContextMapper/context-mapper-dsl/logo/cm-logo-github-small.png)
-# Context Mapper Demo for Online IDE 
-[![Build](https://github.com/ContextMapper/web-ide-demo/actions/workflows/build.yml/badge.svg)](https://github.com/ContextMapper/web-ide-demo/actions) [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/ContextMapper/web-ide-demo) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+## Instrucciones
+A continuación se indican los archivos que contienen los items de entrega:
 
-Welcome to Context Mapper's demo repository. It illustrates how you can configure your own repository for the usage of Context Mapper in the online IDE [Gitpod](https://www.gitpod.io/).
+Documentación de dominios y sub-dominios
 
-## Start Using Context Mapper Now
-Start the online IDE and use Context Mapper right now:
+* Dominios y subdominios: src/main/cml/alpes_AS_IS.cml
+* Vision statement para los dominios: src/main/cml/alpes_AS_IS.cml
+* Tipos de subdominios subdominios: src/main/cml/alpes_AS_IS.cml
 
-<a href="https://gitpod.io/#https://github.com/ContextMapper/web-ide-demo" style="padding: 10px;">
-    <img src="https://gitpod.io/button/open-in-gitpod.svg" width="150" alt="Push" align="center">
-</a>
-<br/><br/>
+Documentación del lenguaje ubicuo
 
-## Open the Demo File
-In the folder `src/main/cml` you find a small **[CML demo](./src/main/cml/demo.cml)** (DDD sample application) where you can start to familiarize yourself with our DSL and our tools.
-You can find more info's about the tool and a complete documentation on our website [https://contextmapper.org/](https://contextmapper.org/).
+* Event storming - AS-IS: src/main/cml/alpes_AS_IS.cml
+* Event storming - TO-BE: src/main/cml/alpes_TO_BE.cml
 
-## Create Your Own Context Mapping Repository
-You can simply fork this repository and click the button above to start the online IDE for your repo.
+Documentación de contextos acotados
 
-## Useful Links
- 
- * [More example models](https://github.com/ContextMapper/context-mapper-examples)
- * [CML language reference](https://contextmapper.org/docs/language-reference/)
- * [Rapid prototyping tutorial](https://contextmapper.org/docs/rapid-ooad/)
- * [Architectural Refactorings](https://contextmapper.org/docs/architectural-refactorings/)
- * [Generators](https://contextmapper.org/docs/generators/)
+* Contextos acotados AS-IS: src/main/cml/alpes_AS_IS.cml
+* Relación y tipos de integración de contextos AS-IS: src/main/cml/alpes_AS_IS.cml
+* Mapa de contexto AS-IS: src-gen/alpes_AS_IS_ContextMap.png
+* Contextos acotados TO-BE: src/main/cml/alpes_AS_IS.cml
+* Relación y tipos de integración de contextos TO-BE: src/main/cml/alpes_AS_IS.cml
+* Mapa de contexto TO-BE: src-gen/alpes_TO_BE_ContextMap.png
